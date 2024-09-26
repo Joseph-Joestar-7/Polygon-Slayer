@@ -1,0 +1,8 @@
+﻿  Entity.cpp
+  EntityManager.cpp
+  Main.cpp
+  glm.cpp
+  Generating Code...
+EntityManager.obj : error LNK2019: unresolved external symbol "private: void __cdecl EntityManager::removeDeadEntities(class std::vector<class std::shared_ptr<class Entity>,class std::allocator<class std::shared_ptr<class Entity> > > &)" (?removeDeadEntities@EntityManager@@AEAAXAEAV?$vector@V?$shared_ptr@VEntity@@@std@@V?$allocator@V?$shared_ptr@VEntity@@@std@@@2@@std@@@Z) referenced in function "public: void __cdecl EntityManager::update(void)" (?update@EntityManager@@QEAAXXZ)
+MSVCRTD.lib(exe_main.obj) : error LNK2019: unresolved external symbol main referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\x64\Debug\Polygon Slayer.exe : fatal error LNK1120: 2 unresolved externals
