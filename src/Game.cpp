@@ -364,3 +364,179 @@ void Game::sLifespan()
 		}
 	}
 }
+
+void Game::spawnPlayer()
+{
+	PlayerConfig& pC = m_playerConfig;
+	auto entity = m_entityManager.addEntity("player");
+
+	// Adding Transform
+	// Spawn at the middle of the screen
+	float X = m_window.getSize().x / 2.0f;
+	float Y = m_window.getSize().y / 2.0f;
+	entity->cTransform = std::make_shared<CTransform>(
+		glm::vec2(X, Y), glm::vec2(0.0f, 0.0f), 0.0f);
+
+	// Adding shape
+	sf::Color fillColor(pC.FR, pC.FG, pC.FB);
+	sf::Color outlineColor(pC.OR, pC.OG, pC.OB);
+	entity->cShape = std::make_shared<CShape>(pC.SR, pC.V, fillColor,
+		outlineColor, pC.OT);
+
+	// Enabling input
+	entity->cInput = std::make_shared<CInput>();
+
+	// Enabling collisions
+	entity->cCollision = std::make_shared<CCollision>(pC.CR);
+
+	m_player = entity;
+}
+
+void Game::spawnEnemy()
+{
+	EnemyConfig& eC = m_enemyConfig;
+	auto entity = m_entityManager.addEntity("enemy");
+
+	// Adding Transform
+	// Spawn at random location with shape totally in bounds of screen
+	float X = randomInRange(eC.SR, m_window.getSize().x - eC.SR);
+	float Y = randomInRange(eC.SR, m_window.getSize().y - eC.SR);
+	// Random velocity
+	// Assign random x vel and y vel. Normalize the vector
+	// Multiply this vector with random in range [SMIN, SMAX]
+	float xVel = randomInRange(-10, 10);
+	float yVel = randomInRange(-10, 10);
+	glm::vec2 vel(xVel, yVel);
+	glm::normalize(vel);
+	vel *= randomInRange(eC.SMIN, eC.SMAX);
+
+	entity->cTransform =
+		std::make_shared<CTransform>(glm::vec2(X, Y), vel, 0.0f);
+
+	// Adding shape
+	// Random fill color
+	int r = randomInRange(0, 255);
+	int g = randomInRange(0, 255);
+	int b = randomInRange(0, 255);
+	sf::Color fillColor(r, g, b);
+	sf::Color outlineColor(eC.OR, eC.OG, eC.OB);
+
+	// Random number of vertices in range [VMIN, VMAX]
+	int vertices = randomInRange(eC.VMIN, eC.VMAX);
+	entity->cShape = std::make_shared<CShape>(eC.SR, vertices, fillColor,
+		outlineColor, eC.OT);
+
+	// Enabling collisions
+	entity->cCollision = std::make_shared<CCollision>(eC.CR);
+
+	// Enemy score, is proportional to number of it's vertices
+	entity->cScore = std::make_shared<CScore>(vertices * UNIT_SCORE);
+
+	// Record when the most recent enemy was spawned
+	m_lastEnemySpawnFrame = m_currentFrame;
+}
+
+void Game::spawnSmallEnemies(std::shared_ptr<Entity> entity)
+{
+	int vertices = entity->cShape->circle.getPointCount();
+	int step = 360 / vertices;
+
+	EnemyConfig& eC = m_enemyConfig;
+
+	for (int i = 0; i < vertices; i++) {
+		auto smallEntity = m_entityManager.addEntity("small enemy");
+		// Adding Transform
+		glm::vec2& pos = entity->cTransform->position;
+		// Each small enemy travel outwards at fixed intervals equal to
+		// 360/vertices
+		float xVel = cos(i * step * PI / 180);
+		float yVel = sin(i * step * PI / 180);
+		glm::vec2 vel(xVel, yVel);
+		auto speed = entity->cTransform->velocity.length();
+		vel *= speed;
+		smallEntity->cTransform =
+			std::make_shared<CTransform>(pos, vel, 0.0f);
+
+		// Adding shape
+		// Small enemies have same color of their parent but half the radius
+		auto fillColor = entity->cShape->circle.getFillColor();
+		auto outlineColor = entity->cShape->circle.getOutlineColor();
+
+		smallEntity->cShape = std::make_shared<CShape>(
+			eC.SR / 2.0f, vertices, fillColor, outlineColor,
+			eC.OT / 2.0f);
+
+		// Enabling collisions, small enemies have half the radius
+		smallEntity->cCollision =
+			std::make_shared<CCollision>(eC.CR / 2);
+
+		// small enemy score is half the original enemy
+		smallEntity->cScore =
+			std::make_shared<CScore>(vertices * UNIT_SCORE / 2);
+
+		// small enemies have a lifespan
+		smallEntity->cLifespan = std::make_shared<CLifespan>(eC.L);
+	}
+}
+
+void Game::spawnBullet(std::shared_ptr<Entity> entity, const glm::vec2& mousePos)
+{
+	BulletConfig& bC = m_bulletConfig;
+	auto e = m_entityManager.addEntity("bullet");
+
+	// Adding Transform
+	float X = entity->cTransform->position.x;
+	float Y = entity->cTransform->position.y;
+	// Finding velocity Vec2
+	// Find direction vector from current position of player to mousePos
+	// Normalize the vector and multiply with speed of bullet
+	glm::vec2 vel = mousePos - entity->cTransform->position;
+	glm::normalize(vel);
+	vel *= bC.S;
+
+	e->cTransform = std::make_shared<CTransform>(glm::vec2(X, Y), vel, 0.0f);
+
+	// Adding shape
+	sf::Color fillColor(bC.FR, bC.FG, bC.FB);
+	sf::Color outlineColor(bC.OR, bC.OG, bC.OB);
+	e->cShape = std::make_shared<CShape>(bC.SR, bC.V, fillColor,
+		outlineColor, bC.OT);
+
+	// Enabling collisions
+	e->cCollision = std::make_shared<CCollision>(bC.CR);
+
+	// Bullets have lifespan
+	e->cLifespan = std::make_shared<CLifespan>(bC.L);
+}
+
+void Game::spawnSpecialWeapon(std::shared_ptr<Entity> entity)
+{
+	//Later
+}
+
+void Game::run()
+{
+	while (m_window.isOpen()) {
+		if (!m_running) {
+			m_window.close();
+			return;
+		}
+
+		// If not paused, run these systems
+		if (!m_paused) {
+			m_entityManager.update();
+
+			this->sEnemySpawner();
+			this->sMovement();
+			this->sCollision();
+			this->sLifespan();
+		}
+
+		this->sUserInput();
+		this->sRender();
+
+		m_currentFrame++;
+	}
+}
+
+
