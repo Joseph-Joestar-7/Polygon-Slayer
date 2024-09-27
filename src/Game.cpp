@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include "utils.h"
 
 #define PI 3.14159265
 
@@ -142,11 +143,10 @@ void Game::sUserInput()
 			if (event.mouseButton.button == sf::Mouse::Left) {
 				glm::vec2 mousePos(event.mouseButton.x,
 					event.mouseButton.y);
-				// Required to check if game is in pause state! Smart asses can
-				// pause the game, shoot mutliple bullets then resume, multiple
-				// bullets will be spawned!
 				if (!m_paused)
+				{
 					spawnBullet(m_player, mousePos);
+				}
 			}
 
 			if (event.mouseButton.button == sf::Mouse::Right) {
@@ -407,7 +407,7 @@ void Game::spawnEnemy()
 	float xVel = randomInRange(-10, 10);
 	float yVel = randomInRange(-10, 10);
 	glm::vec2 vel(xVel, yVel);
-	glm::normalize(vel);
+	vel=glm::normalize(vel);
 	vel *= randomInRange(eC.SMIN, eC.SMAX);
 
 	entity->cTransform =
@@ -491,7 +491,7 @@ void Game::spawnBullet(std::shared_ptr<Entity> entity, const glm::vec2& mousePos
 	// Find direction vector from current position of player to mousePos
 	// Normalize the vector and multiply with speed of bullet
 	glm::vec2 vel = mousePos - entity->cTransform->position;
-	glm::normalize(vel);
+	vel=glm::normalize(vel); 
 	vel *= bC.S;
 
 	e->cTransform = std::make_shared<CTransform>(glm::vec2(X, Y), vel, 0.0f);

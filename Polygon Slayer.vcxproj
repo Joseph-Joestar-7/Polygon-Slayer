@@ -142,7 +142,9 @@
   <ItemGroup>
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\EntityManager.cpp" />
+    <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\utils.cpp" />
     <ClCompile Include="src\vendor\glm\detail\glm.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +157,8 @@
     <ClInclude Include="src\Components.h" />
     <ClInclude Include="src\Entity.h" />
     <ClInclude Include="src\EntityManager.h" />
+    <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\utils.h" />
     <ClInclude Include="src\vendor\glm\common.hpp" />
     <ClInclude Include="src\vendor\glm\detail\compute_common.hpp" />
     <ClInclude Include="src\vendor\glm\detail\compute_vector_decl.hpp" />
