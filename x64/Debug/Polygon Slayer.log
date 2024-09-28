@@ -1,20 +1,20 @@
 ﻿  Game.cpp
-C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(335,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(352,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(402,10): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(336,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(353,22): warning C4018: '<': signed/unsigned mismatch
 C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(403,10): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(407,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(404,10): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(408,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(411,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(411,25): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(441,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(452,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(409,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(412,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(412,25): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(442,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(453,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(454,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(241,76): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   (compiling source file 'src/Game.cpp')
   C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(241,76):
   the template instantiation context (the oldest one first) is
-  	C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(383,24):
+  	C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(384,24):
   	see reference to function template instantiation 'std::shared_ptr<CShape> std::make_shared<CShape,int&,int&,sf::Color&,sf::Color&,int&>(int &,int &,sf::Color &,sf::Color &,int &)' being compiled
   	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2769,46):
   	see reference to function template instantiation 'std::_Ref_count_obj2<CShape>::_Ref_count_obj2<int&,int&,sf::Color&,sf::Color&,int&>(int &,int &,sf::Color &,sf::Color &,int &)' being compiled
@@ -42,7 +42,7 @@ C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.3313
   (compiling source file 'src/Game.cpp')
   C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(241,76):
   the template instantiation context (the oldest one first) is
-  	C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(471,9):
+  	C:\Users\HP\Desktop\CS Playground\SFML\COMP 4300\Polygon Slayer\src\Game.cpp(472,9):
   	see reference to function template instantiation 'std::shared_ptr<CCollision> std::make_shared<CCollision,int>(int &&)' being compiled
   	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2769,46):
   	see reference to function template instantiation 'std::_Ref_count_obj2<CCollision>::_Ref_count_obj2<_Ty>(_Ty &&)' being compiled

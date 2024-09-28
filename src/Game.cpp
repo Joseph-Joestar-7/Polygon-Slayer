@@ -62,18 +62,19 @@ void Game::sMovement()
 	m_player->cTransform->velocity = { 0.0f, 0.0f };
 
 	if (m_player->cInput->up) {
-		m_player->cTransform->velocity.y = -m_playerConfig.S;
+		m_player->cTransform->velocity.y = -m_playerConfig.S; //Decrease y to move up
 	}
 	else if (m_player->cInput->down) {
-		m_player->cTransform->velocity.y = m_playerConfig.S;
+		m_player->cTransform->velocity.y = m_playerConfig.S;//Increase y 
 	}
 	else if (m_player->cInput->left) {
-		m_player->cTransform->velocity.x = -m_playerConfig.S;
+		m_player->cTransform->velocity.x = -m_playerConfig.S;//Decrease x
 	}
 	else if (m_player->cInput->right) {
-		m_player->cTransform->velocity.x = m_playerConfig.S;
+		m_player->cTransform->velocity.x = m_playerConfig.S;//Increase x
 	}
 
+	//update the position of all entities
 	for (const auto e : m_entityManager.getEntities()) {
 		e->cTransform->position += e->cTransform->velocity;
 	}

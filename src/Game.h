@@ -10,16 +10,22 @@ struct PlayerConfig {
 	int SR, CR, FR, FG, FB, OR, OG, OB, OT, V, T;
 	float S;
 };
+//Shape Radius, Collision Radius, Fill RGB, Outline RGB, Outline Thickness,Shape Vertices
+//Speed
 
 struct EnemyConfig {
 	int SR, CR, OR, OG, OB, OT, VMIN, VMAX, L, SI;
 	float SMIN, SMAX;
 };
+//Shape Radius, Collision Radius, Outline RGB, Outline Thickness,Max/Min Vertices, Small Lifespan, Spawn Interval
+//Min and Max Speed
 
 struct BulletConfig {
 	int SR, CR, FR, FG, FB, OR, OG, OB, OT, V, L;
 	float S;
 };
+//Shape radius, COllision Radius, Fill RGB, Outline RGB, Outline Thickness, Shape Vertices, Lifespan
+//Speed
 
 class Game {
 	sf::RenderWindow m_window;  // window to draw to
