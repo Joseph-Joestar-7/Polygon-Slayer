@@ -27,8 +27,6 @@ Polygon Slayer is a 2D game built in C++ using the SFML (Simple and Fast Multime
 
 ## Build Instructions
 
-### Windows
-
 1. **Clone the Repository**:
    Open a terminal (Command Prompt or Git Bash) and run:
    ```bash
@@ -49,10 +47,6 @@ Polygon Slayer is a 2D game built in C++ using the SFML (Simple and Fast Multime
 5. **Build the Project**: Click **Build** > **Build Solution** (or press `Ctrl+Shift+B`) to compile the project.
 
 6. **Run the Project**: After building successfully, you can run the project by clicking **Debug** > **Start Debugging** (or pressing `F5`).
-
-### Mac/Linux
-
-Will do later. Support for these platforms will be added in future updates.
 
 ## Gameplay
 
